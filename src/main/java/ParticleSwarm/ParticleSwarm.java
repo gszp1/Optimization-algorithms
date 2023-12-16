@@ -70,6 +70,10 @@ public class ParticleSwarm {
             for(Particle particle: particles) {
                 particle.updateVelocity(inertiaCoefficient, socialCoefficient, cognitiveCoefficient);
                 particle.updateValue(function);
+                if (particle.getValue() > function.evaluate(bestGlobalPosition.getX(), bestGlobalPosition.getY())) {
+                    bestGlobalPosition = particle.getPosition();
+                }
+                particle.updateBestLocalPosition(function);
             }
             ++epochCounter;
         }

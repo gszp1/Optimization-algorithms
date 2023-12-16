@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Particle {
 
-    private Position bestLocalPosition;
+    private final Position bestLocalPosition;
 
     private Position bestGlobalPosition;
 
@@ -19,7 +19,7 @@ public class Particle {
     public Particle(double x, double y, Velocity velocity) {
         this.position = new Position(x, y);
         this.velocity = velocity;
-        bestLocalPosition = position;
+        bestLocalPosition = new Position(position.getX(), position.getY());
     }
 
     public void updateVelocity(double inertiaCoefficient,
@@ -70,6 +70,13 @@ public class Particle {
     public boolean comparePositions(Particle particle) {
         return (position.getX() == particle.getPosition().getX() &&
                 position.getY() == particle.getPosition().getY());
+    }
+
+    public void updateBestLocalPosition(Function function) {
+        if (function.evaluate(bestLocalPosition.getX(), bestLocalPosition.getY()) < value) {
+            bestLocalPosition.setX(position.getX());
+            bestLocalPosition.setY(position.getY());
+        }
     }
 
 
