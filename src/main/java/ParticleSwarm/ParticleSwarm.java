@@ -25,12 +25,19 @@ public class ParticleSwarm {
 
     private final int numberOfEpochs;
 
-    public ParticleSwarm(double minX, double maxX, double minY, double maxY, int size, Function function, int numberOfEpochs) {
+    private final double socialCoefficient;
+
+    private final double cognitiveCoefficient;
+
+    public ParticleSwarm(double minX, double maxX, double minY, double maxY, int size, Function function, int numberOfEpochs,
+                         double socialCoefficient, double cognitiveCoefficient) {
         this.minX = minX;
         this.maxX = maxX;
         this.minY = minY;
         this.maxY = maxY;
         this.numberOfEpochs = numberOfEpochs;
+        this.socialCoefficient = socialCoefficient;
+        this.cognitiveCoefficient = cognitiveCoefficient;
         populationSize = size;
         particles = new ArrayList<>();
         int particleCount = 0;
