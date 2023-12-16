@@ -26,9 +26,13 @@ public class GeneticAlgorithm {
 
     private final Function function;
 
+    private final int numberOfGenerations;
+
+
 
     public GeneticAlgorithm(float crossingProbability, float mutationProbability, int populationSize,
-                            double minX, double maxX, double minY, double maxY, int precision, Function function) {
+                            double minX, double maxX, double minY, double maxY, int precision, Function function,
+                            int numberOfGenerations) {
         this.crossingProbability = crossingProbability;
         this.mutationProbability = mutationProbability;
         this.populationSize = populationSize;
@@ -38,6 +42,7 @@ public class GeneticAlgorithm {
         this.maxY = maxY;
         this.function = function;
         this.precision = precision;
+        this.numberOfGenerations = numberOfGenerations;
         chromosomes = new ArrayList<>();
         generatePopulation();
     }
