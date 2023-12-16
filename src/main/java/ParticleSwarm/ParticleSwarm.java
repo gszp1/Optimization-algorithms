@@ -39,6 +39,7 @@ public class ParticleSwarm {
             }
         }
         this.function = function;
+        updateParticlesValues();
     }
 
 
@@ -50,11 +51,20 @@ public class ParticleSwarm {
 
 
     private void updateBestGlobalSolution() {
-
+        Particle bestParticle = findBestSolution();
+        for (Particle particle: particles) {
+            particle.setBestGlobalPosition(bestParticle.getPosition());
+        }
     }
 
-    private double findBestSolution() {
-
+    private Particle findBestSolution() {
+        Particle bestParticle = particles.get(0);
+        for (Particle particle: particles) {
+            if (particle.getValue() > bestParticle.getValue()) {
+                bestParticle = particle;
+            }
+        }
+        return bestParticle;
     }
 
     private boolean inPopulation(Particle particle) {
