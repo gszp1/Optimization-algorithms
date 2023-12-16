@@ -1,5 +1,7 @@
 package ParticleSwarm;
 
+import utils.Function;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Particle {
@@ -43,6 +45,11 @@ public class Particle {
                 cognitiveCoefficient * rp * (bestLocalPosition.getY() - position.getY()) +
                 socialCoefficient * rg * (bestGlobalPosition.getY() - position.getY());
     }
+
+    public void updateValue(Function function) {
+        value = function.evaluate(position.getX(), position.getY());
+    }
+
 
     public void setBestGlobalPosition(Position position) {
         bestGlobalPosition = position;

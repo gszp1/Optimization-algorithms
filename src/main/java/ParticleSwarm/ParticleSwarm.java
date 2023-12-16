@@ -64,12 +64,12 @@ public class ParticleSwarm {
         }
     }
 
-    private void runAlgorithm() {
+    public void runAlgorithm() {
         int epochCounter = 0;
         while (epochCounter < numberOfEpochs) {
             for(Particle particle: particles) {
                 particle.updateVelocity(inertiaCoefficient, socialCoefficient, cognitiveCoefficient);
-
+                particle.updateValue(function);
             }
             ++epochCounter;
         }
@@ -79,7 +79,7 @@ public class ParticleSwarm {
 
     private void updateParticlesValues() {
         for (Particle particle: particles) {
-            particle.setValue(function.evaluate(particle.getPosition().getX(), particle.getPosition().getY()));
+            particle.updateValue(function);
         }
     }
 
