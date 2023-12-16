@@ -1,5 +1,6 @@
 package ParticleSwarm;
 
+import com.sun.xml.internal.ws.wsdl.writer.document.Part;
 import utils.Function;
 
 import java.util.ArrayList;
@@ -74,6 +75,13 @@ public class ParticleSwarm {
                     bestGlobalPosition = particle.getPosition();
                 }
                 particle.updateBestLocalPosition(function);
+            }
+            for(Particle particle: particles) {
+                System.out.println(particle.getPosition().getX() + " | "
+                        + particle.getPosition().getY() + " | "
+                        + particle.getValue() + " | " +
+                        (epochCounter + 1)
+                );
             }
             ++epochCounter;
         }
