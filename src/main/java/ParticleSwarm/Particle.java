@@ -8,10 +8,13 @@ public class Particle {
 
     private final Position position;
 
+    private final Velocity velocity;
+
     private double value;
 
-    public Particle(double x, double y) {
+    public Particle(double x, double y, Velocity velocity) {
         this.position = new Position(x, y);
+        this.velocity = velocity;
         bestLocalPosition = position;
     }
 
