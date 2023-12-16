@@ -21,6 +21,8 @@ public class ParticleSwarm {
 
     private final Function function;
 
+    private Position bestGlobalPosition;
+
     public ParticleSwarm(double minX, double maxX, double minY, double maxY, int size, Function function) {
         this.minX = minX;
         this.maxX = maxX;
@@ -40,6 +42,10 @@ public class ParticleSwarm {
         }
         this.function = function;
         updateParticlesValues();
+        updateBestGlobalSolution();
+        for (Particle particle: particles) {
+            particle.setBestGlobalPosition(bestGlobalPosition);
+        }
     }
 
 
@@ -51,21 +57,15 @@ public class ParticleSwarm {
 
 
     private void updateBestGlobalSolution() {
-        Particle bestParticle = findBestSolution();
-        for (Particle particle: particles) {
-            particle.setBestGlobalPosition(bestParticle.getPosition());
-        }
-    }
-
-    private Particle findBestSolution() {
         Particle bestParticle = particles.get(0);
         for (Particle particle: particles) {
             if (particle.getValue() > bestParticle.getValue()) {
                 bestParticle = particle;
             }
         }
-        return bestParticle;
+        bestGlobalPosition = bestParticle.getPosition();
     }
+
 
     private boolean inPopulation(Particle particle) {
         for (Particle particle1: particles) {
