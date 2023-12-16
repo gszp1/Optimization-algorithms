@@ -23,11 +23,14 @@ public class ParticleSwarm {
 
     private Position bestGlobalPosition;
 
-    public ParticleSwarm(double minX, double maxX, double minY, double maxY, int size, Function function) {
+    private final int numberOfEpochs;
+
+    public ParticleSwarm(double minX, double maxX, double minY, double maxY, int size, Function function, int numberOfEpochs) {
         this.minX = minX;
         this.maxX = maxX;
         this.minY = minY;
         this.maxY = maxY;
+        this.numberOfEpochs = numberOfEpochs;
         populationSize = size;
         particles = new ArrayList<>();
         int particleCount = 0;
