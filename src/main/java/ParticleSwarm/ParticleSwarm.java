@@ -29,8 +29,10 @@ public class ParticleSwarm {
 
     private final double cognitiveCoefficient;
 
+    private final double inertiaCoefficient;
+
     public ParticleSwarm(double minX, double maxX, double minY, double maxY, int size, Function function, int numberOfEpochs,
-                         double socialCoefficient, double cognitiveCoefficient) {
+                         double socialCoefficient, double cognitiveCoefficient, double inertiaCoefficient) {
         this.minX = minX;
         this.maxX = maxX;
         this.minY = minY;
@@ -38,6 +40,7 @@ public class ParticleSwarm {
         this.numberOfEpochs = numberOfEpochs;
         this.socialCoefficient = socialCoefficient;
         this.cognitiveCoefficient = cognitiveCoefficient;
+        this.inertiaCoefficient = inertiaCoefficient;
         populationSize = size;
         particles = new ArrayList<>();
         int particleCount = 0;
@@ -60,6 +63,18 @@ public class ParticleSwarm {
             particle.setBestGlobalPosition(bestGlobalPosition);
         }
     }
+
+    private void runAlgorithm() {
+        int epochCounter = 0;
+        while (epochCounter < numberOfEpochs) {
+            for(Particle particle: particles) {
+                particle.updateVelocity(inertiaCoefficient, socialCoefficient, cognitiveCoefficient);
+
+            }
+            ++epochCounter;
+        }
+    }
+
 
 
     private void updateParticlesValues() {

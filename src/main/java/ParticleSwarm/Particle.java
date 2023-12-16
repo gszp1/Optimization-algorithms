@@ -1,5 +1,7 @@
 package ParticleSwarm;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Particle {
 
     private Position bestLocalPosition;
@@ -18,10 +20,33 @@ public class Particle {
         bestLocalPosition = position;
     }
 
+    public void updateVelocity(double inertiaCoefficient,
+                               double socialCoefficient, double cognitiveCoefficient) {
+        velocity.setxVelocity(getUpdatedXVelocity(inertiaCoefficient, socialCoefficient, cognitiveCoefficient));
+        velocity.setyVelocity(getUpdatedYVelocity(inertiaCoefficient, socialCoefficient, cognitiveCoefficient));
+    }
+
+    private double getUpdatedXVelocity(double inertiaCoefficient,
+                                       double socialCoefficient, double cognitiveCoefficient) {
+        double rp = ThreadLocalRandom.current().nextDouble(0, 1.0);
+        double rg = ThreadLocalRandom.current().nextDouble(0, 1.0);
+        return inertiaCoefficient * velocity.getxVelocity() +
+                cognitiveCoefficient * rp * (bestLocalPosition.getX() - position.getX()) +
+                socialCoefficient * rg * (bestGlobalPosition.getX() - position.getX());
+    }
+
+    private double getUpdatedYVelocity(double inertiaCoefficient,
+                                       double socialCoefficient, double cognitiveCoefficient) {
+        double rp = ThreadLocalRandom.current().nextDouble(0, 1.0);
+        double rg = ThreadLocalRandom.current().nextDouble(0, 1.0);
+        return inertiaCoefficient * velocity.getxVelocity() +
+                cognitiveCoefficient * rp * (bestLocalPosition.getY() - position.getY()) +
+                socialCoefficient * rg * (bestGlobalPosition.getY() - position.getY());
+    }
+
     public void setBestGlobalPosition(Position position) {
         bestGlobalPosition = position;
     }
-
 
     public Position getPosition() {
         return position;
@@ -39,4 +64,6 @@ public class Particle {
         return (position.getX() == particle.getPosition().getX() &&
                 position.getY() == particle.getPosition().getY());
     }
+
+
 }
