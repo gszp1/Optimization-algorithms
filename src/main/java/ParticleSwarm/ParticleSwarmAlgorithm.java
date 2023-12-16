@@ -1,12 +1,11 @@
 package ParticleSwarm;
 
-import com.sun.xml.internal.ws.wsdl.writer.document.Part;
 import utils.Function;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class ParticleSwarm {
+public class ParticleSwarmAlgorithm {
 
     private final double minX;
 
@@ -32,8 +31,8 @@ public class ParticleSwarm {
 
     private final double inertiaCoefficient;
 
-    public ParticleSwarm(double minX, double maxX, double minY, double maxY, int size, Function function, int numberOfEpochs,
-                         double socialCoefficient, double cognitiveCoefficient, double inertiaCoefficient) {
+    public ParticleSwarmAlgorithm(double minX, double maxX, double minY, double maxY, int size, Function function, int numberOfEpochs,
+                                  double socialCoefficient, double cognitiveCoefficient, double inertiaCoefficient) {
         this.minX = minX;
         this.maxX = maxX;
         this.minY = minY;
@@ -65,7 +64,7 @@ public class ParticleSwarm {
         }
     }
 
-    public void runAlgorithm() {
+    public Position runAlgorithm() {
         int epochCounter = 0;
         while (epochCounter < numberOfEpochs) {
             for(Particle particle: particles) {
@@ -85,6 +84,7 @@ public class ParticleSwarm {
             }
             ++epochCounter;
         }
+        return bestGlobalPosition;
     }
 
 
