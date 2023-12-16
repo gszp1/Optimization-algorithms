@@ -35,8 +35,11 @@ public class ParticleSwarm {
         particles = new ArrayList<>();
         int particleCount = 0;
         while (particleCount < populationSize) {
-            Particle particle = new Particle(ThreadLocalRandom.current().nextDouble(this.minX, this.maxX),
-                    ThreadLocalRandom.current().nextDouble(this.minY, this.maxY)
+            double xVelocity = ThreadLocalRandom.current().nextDouble(-Math.abs(maxX - minX), Math.abs(maxX - minX));
+            double yVelocity = ThreadLocalRandom.current().nextDouble(-Math.abs(maxY - minY), Math.abs(maxY - minY));
+            Particle particle = new Particle(ThreadLocalRandom.current().nextDouble(minX, maxX),
+                    ThreadLocalRandom.current().nextDouble(minY, maxY),
+                    new Velocity(xVelocity, yVelocity)
             );
             if (!inPopulation(particle)) {
                 particles.add(particle);
