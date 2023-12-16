@@ -20,9 +20,9 @@ public class Chromosome {
     private final StringBuilder y;
 
 
-    public Chromosome(int length) {
-        x = generateBinaryVector(length);
-        y = generateBinaryVector(length);
+    public Chromosome(int xLength, int yLength) {
+        x = generateBinaryVector(xLength);
+        y = generateBinaryVector(yLength);
     }
 
     public StringBuilder getX() {

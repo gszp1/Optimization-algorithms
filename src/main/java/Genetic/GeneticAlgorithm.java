@@ -26,6 +26,7 @@ public class GeneticAlgorithm {
 
     private final Function function;
 
+
     public GeneticAlgorithm(float crossingProbability, float mutationProbability, int populationSize,
                             double minX, double maxX, double minY, double maxY, int precision, Function function) {
         this.crossingProbability = crossingProbability;
@@ -38,13 +39,26 @@ public class GeneticAlgorithm {
         this.function = function;
         this.precision = precision;
         chromosomes = new ArrayList<>();
-
+        generatePopulation();
     }
 
-    public static void main(String [] args) {
-        Chromosome chromosome = new Chromosome(15);
-        System.out.println(chromosome.getX());
-        System.out.println(chromosome.getY());
+    private void generatePopulation() {
+        int chromosomesXLength = 0;
+        int chromosomesYLength = 0;
+        int xDomainLength = (int) Math.abs(maxX - minX);
+        int yDomainLength = (int) Math.abs(maxY - minY);
+        int numberOfYElements = (int) (yDomainLength * Math.pow(10, precision));
+        int numberOfXElements = (int) (xDomainLength * Math.pow(10, precision));
+        while (Math.pow(2, chromosomesXLength) < numberOfXElements) {
+            ++chromosomesXLength;
+        }
+        while (Math.pow(2, chromosomesYLength) < numberOfYElements) {
+            ++chromosomesYLength;
+        }
+        for (int i = 0; i < populationSize; ++i) {
+            chromosomes.add(new Chromosome(chromosomesXLength, chromosomesYLength));
+        }
     }
+
 
 }
