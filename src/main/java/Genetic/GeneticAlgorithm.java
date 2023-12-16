@@ -35,6 +35,7 @@ public class GeneticAlgorithm {
         this.maxX = maxX;
         this.minY = minY;
         this.maxY = maxY;
+        this.function = function;
         this.precision = precision;
         chromosomes = new ArrayList<>();
 

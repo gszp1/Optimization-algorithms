@@ -19,6 +19,7 @@ public class Chromosome {
 
     private final StringBuilder y;
 
+
     public Chromosome(int length) {
         x = generateBinaryVector(length);
         y = generateBinaryVector(length);
@@ -30,5 +31,15 @@ public class Chromosome {
 
     public StringBuilder getY() {
         return y;
+    }
+
+    public double decodeX(int domainLength, double minValue) {
+        int binaryValue = Integer.parseInt(String.valueOf(x), 2);
+        return minValue + ((domainLength * binaryValue) / (Math.pow(2, x.length()) - 1));
+    }
+
+    public double decodeY(int domainLength, double minValue) {
+        int binaryValue = Integer.parseInt(String.valueOf(y), 2);
+        return minValue + ((domainLength * binaryValue) / (Math.pow(2, x.length()) - 1));
     }
 }
