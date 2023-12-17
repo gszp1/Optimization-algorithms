@@ -56,16 +56,16 @@ public class Chromosome {
     }
 
     public void mutateChromosome() {
-        int picker = (int) ThreadLocalRandom.current().nextDouble(0, 2);
+        int picker = ThreadLocalRandom.current().nextInt(0, 2);
         if (picker == 0) {
-            int mutationIndex = (int) ThreadLocalRandom.current().nextDouble(0, x.length() + 1);
+            int mutationIndex = ThreadLocalRandom.current().nextInt(0, x.length() + 1);
             if (x.charAt(mutationIndex) == '0') {
                 x.setCharAt(mutationIndex, '1');
             } else {
                 x.setCharAt(mutationIndex, '0');
             }
         }
-        int mutationIndex = (int) ThreadLocalRandom.current().nextDouble(0, y.length() + 1);
+        int mutationIndex = ThreadLocalRandom.current().nextInt(0, y.length() + 1);
         if (y.charAt(mutationIndex) == '0') {
             y.setCharAt(mutationIndex, '1');
         } else {
