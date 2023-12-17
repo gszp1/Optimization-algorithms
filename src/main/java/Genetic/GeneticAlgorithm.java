@@ -119,7 +119,18 @@ public class GeneticAlgorithm {
         return newPopulation;
     }
 
-
-
-
+    private ArrayList<Chromosome> parentsPairsCrossover(ArrayList<ChromosomePair> parentsPairs) {
+        ArrayList<Chromosome> newPopulation = new ArrayList<>();
+        for (ChromosomePair pair: parentsPairs) {
+            if (ThreadLocalRandom.current().nextDouble(0, 1.0) > crossingProbability) {
+                newPopulation.add(pair.getFirstChromosome());
+                newPopulation.add(pair.getSecondChromosome());
+            } else {
+                ChromosomePair crossedPair = pair.chromosomeCrossover();
+                newPopulation.add(crossedPair.getFirstChromosome());
+                newPopulation.add(crossedPair.getSecondChromosome());
+            }
+        }
+        return newPopulation;
+    }
 }
