@@ -1,0 +1,12 @@
+version: '3.8'  # Use an appropriate version
+
+services:
+  optimal_service:
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    command: particleswarm 0 100 0 100 x^2 + y
+    volumes:
+      - ./results:/project/results
+    stdin_open: true
+    tty: true
