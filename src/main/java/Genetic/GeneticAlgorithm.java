@@ -22,7 +22,7 @@ public class GeneticAlgorithm {
 
     private final int precision;
 
-    private final ArrayList<Chromosome> chromosomes;
+    private ArrayList<Chromosome> chromosomes;
 
     private final Function function;
 
@@ -62,6 +62,19 @@ public class GeneticAlgorithm {
         }
         for (int i = 0; i < populationSize; ++i) {
             chromosomes.add(new Chromosome(chromosomesXLength, chromosomesYLength));
+        }
+    }
+
+    public void runAlgorithm() {
+        int generationsCounter = 0;
+        while (generationsCounter < numberOfGenerations) {
+            int xDomainLength = (int) Math.abs(maxX - minX);
+            int yDomainLength = (int) Math.abs(maxY - minY);
+            for(Chromosome chromosome: chromosomes) {
+                chromosome.setFitnessFunctionValue(function.evaluate(chromosome.decodeX(xDomainLength, minX),
+                        chromosome.decodeY(yDomainLength, minY)));
+            }
+            ++generationsCounter;
         }
     }
 

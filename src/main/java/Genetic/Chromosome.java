@@ -1,7 +1,5 @@
 package Genetic;
 
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Chromosome {
@@ -19,6 +17,7 @@ public class Chromosome {
 
     private final StringBuilder y;
 
+    private double fitnessFunctionValue;
 
     public Chromosome(int xLength, int yLength) {
         x = generateBinaryVector(xLength);
@@ -41,5 +40,13 @@ public class Chromosome {
     public double decodeY(int domainLength, double minValue) {
         int binaryValue = Integer.parseInt(String.valueOf(y), 2);
         return minValue + ((domainLength * binaryValue) / (Math.pow(2, x.length()) - 1));
+    }
+
+    public double getFitnessFunctionValue() {
+        return fitnessFunctionValue;
+    }
+
+    public void setFitnessFunctionValue(double value) {
+        fitnessFunctionValue = value;
     }
 }
