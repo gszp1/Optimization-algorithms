@@ -58,14 +58,14 @@ public class Chromosome {
     public void mutateChromosome() {
         int picker = ThreadLocalRandom.current().nextInt(0, 2);
         if (picker == 0) {
-            int mutationIndex = ThreadLocalRandom.current().nextInt(0, x.length() + 1);
+            int mutationIndex = ThreadLocalRandom.current().nextInt(0, x.length());
             if (x.charAt(mutationIndex) == '0') {
                 x.setCharAt(mutationIndex, '1');
             } else {
                 x.setCharAt(mutationIndex, '0');
             }
         }
-        int mutationIndex = ThreadLocalRandom.current().nextInt(0, y.length() + 1);
+        int mutationIndex = ThreadLocalRandom.current().nextInt(0, y.length());
         if (y.charAt(mutationIndex) == '0') {
             y.setCharAt(mutationIndex, '1');
         } else {
