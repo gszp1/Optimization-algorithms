@@ -99,7 +99,13 @@ public class GeneticAlgorithm {
         return parentsPopulation;
     }
 
-    
+    private ArrayList<Chromosome> getNewGeneration(ArrayList<Chromosome> parentsPopulation) {
+        ArrayList<Chromosome> childrenPopulation = new ArrayList<>();
+        for (Chromosome chromosome: parentsPopulation) {
+
+        }
+    }
+
 
 
 

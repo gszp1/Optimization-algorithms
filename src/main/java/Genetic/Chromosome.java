@@ -49,4 +49,6 @@ public class Chromosome {
     public void setFitnessFunctionValue(double value) {
         fitnessFunctionValue = value;
     }
+
+    public
 }
