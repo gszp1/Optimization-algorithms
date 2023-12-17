@@ -12,7 +12,7 @@ public class AlgorithmPicker {
 //                1000, 0.5, 0.5, 0.5);
 //        Position pos = particleSwarm.runAlgorithm();
 //        System.out.println(pos.getX() + " | " + pos.getY() + " | " + f.evaluate(pos.getX(), pos.getY()));
-        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(0.9, 0.1, 100, 0, 100, 0 , 100, 6, f, 1000);
+        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(0.9, 0.1, 25, 0, 100, 0 , 100, 6, f, 1000);
         geneticAlgorithm.runAlgorithm();
     }
 }

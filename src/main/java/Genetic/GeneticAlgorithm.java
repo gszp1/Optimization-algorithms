@@ -81,6 +81,9 @@ public class GeneticAlgorithm {
                 fitnessFunctionValuesSum += value;
                 chromosome.setFitnessFunctionValue(value);
             }
+            for (Chromosome chromosome: chromosomes) {
+                System.out.println(chromosome.getX() + " | " + chromosome.getY() + " | " + chromosome.getFitnessFunctionValue());
+            }
             roulette = new Roulette(chromosomes, fitnessFunctionValuesSum);
             chromosomes = getNewGeneration(getParentsPopulation());
             ++generationsCounter;
@@ -116,7 +119,7 @@ public class GeneticAlgorithm {
         }
         newPopulation.addAll(parentsPairsCrossover(parentPairs));
         if (ThreadLocalRandom.current().nextDouble(0, 1.0) <= mutationProbability) {
-            int mutationIndex = ThreadLocalRandom.current().nextInt(0, newPopulation.size() + 1);
+            int mutationIndex = ThreadLocalRandom.current().nextInt(0, newPopulation.size());
             newPopulation.get(mutationIndex).mutateChromosome();
         }
         return newPopulation;
