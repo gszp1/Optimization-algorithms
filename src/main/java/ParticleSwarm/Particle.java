@@ -79,5 +79,11 @@ public class Particle {
         }
     }
 
+    public void updatePosition() {
+        position.setX(position.getX() + velocity.getxVelocity());
+        position.setY(position.getY() + velocity.getyVelocity());
+    }
+
+
 
 }

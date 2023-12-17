@@ -69,6 +69,7 @@ public class ParticleSwarmAlgorithm {
         while (epochCounter < numberOfEpochs) {
             for(Particle particle: particles) {
                 particle.updateVelocity(inertiaCoefficient, socialCoefficient, cognitiveCoefficient);
+                particle.updatePosition();
                 particle.updateValue(function);
                 if (particle.getValue() > function.evaluate(bestGlobalPosition.getX(), bestGlobalPosition.getY())) {
                     bestGlobalPosition = particle.getPosition();

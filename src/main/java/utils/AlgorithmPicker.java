@@ -34,12 +34,12 @@ public class AlgorithmPicker {
         switch (algorithm) {
             case "genetic":
                 GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(xMin, xMax, yMin, yMax,
-                        0.9, 0.5, 25, 6, f, 100);
+                        0.5, 0.2, 25, 8, f, 5);
                 geneticAlgorithm.runAlgorithm();
                 break;
             case "particleswarm":
                 ParticleSwarmAlgorithm particleSwarm = new ParticleSwarmAlgorithm(xMin, xMax, yMin, yMax,
-                        25, f,100, 0.5, 0.5, 0.5);
+                        25, f,5, 0.9, 0.3, 0.5);
                 particleSwarm.runAlgorithm();
                 break;
             default:
