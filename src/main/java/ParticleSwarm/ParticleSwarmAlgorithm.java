@@ -78,10 +78,10 @@ public class ParticleSwarmAlgorithm {
             for(Particle particle: particles) {
                 System.out.println(particle.getPosition().getX() + " | "
                         + particle.getPosition().getY() + " | "
-                        + particle.getValue() + " | " +
-                        (epochCounter + 1)
+                        + particle.getValue()
                 );
             }
+            System.out.println();
             ++epochCounter;
         }
         return bestGlobalPosition;

@@ -69,8 +69,9 @@ public class GeneticAlgorithm {
         }
     }
 
-    public void runAlgorithm() {
+    public Chromosome runAlgorithm() {
         int generationsCounter = 0;
+        Chromosome bestChromosome = null;
         while (generationsCounter < numberOfGenerations) {
             int xDomainLength = (int) Math.abs(maxX - minX);
             int yDomainLength = (int) Math.abs(maxY - minY);
@@ -80,14 +81,26 @@ public class GeneticAlgorithm {
                         chromosome.decodeY(yDomainLength, minY));
                 fitnessFunctionValuesSum += value;
                 chromosome.setFitnessFunctionValue(value);
+                if (bestChromosome == null) {
+                    bestChromosome = chromosome;
+                } else if (value > bestChromosome.getFitnessFunctionValue()) {
+                    bestChromosome = chromosome;
+                }
             }
             for (Chromosome chromosome: chromosomes) {
-                System.out.println(chromosome.decodeX(xDomainLength, minX) + " | " + chromosome.decodeY(yDomainLength, minY) + " | " + chromosome.getFitnessFunctionValue() + "\n");
+                System.out.println(chromosome.decodeX(xDomainLength, minX)
+                        + " | "
+                        + chromosome.decodeY(yDomainLength, minY)
+                        + " | "
+                        + chromosome.getFitnessFunctionValue());
+
             }
+            System.out.println();
             roulette = new Roulette(chromosomes, fitnessFunctionValuesSum);
             chromosomes = getNewGeneration(getParentsPopulation());
             ++generationsCounter;
         }
+        return bestChromosome;
     }
 
     private ArrayList<Chromosome> getParentsPopulation() {
