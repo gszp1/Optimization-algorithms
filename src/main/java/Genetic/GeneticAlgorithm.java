@@ -70,10 +70,14 @@ public class GeneticAlgorithm {
         while (generationsCounter < numberOfGenerations) {
             int xDomainLength = (int) Math.abs(maxX - minX);
             int yDomainLength = (int) Math.abs(maxY - minY);
+            double fitnessFunctionValuesSum = 0;
             for(Chromosome chromosome: chromosomes) {
-                chromosome.setFitnessFunctionValue(function.evaluate(chromosome.decodeX(xDomainLength, minX),
-                        chromosome.decodeY(yDomainLength, minY)));
+                double value = function.evaluate(chromosome.decodeX(xDomainLength, minX),
+                        chromosome.decodeY(yDomainLength, minY));
+                fitnessFunctionValuesSum += value;
+                chromosome.setFitnessFunctionValue(value);
             }
+
             ++generationsCounter;
         }
     }
