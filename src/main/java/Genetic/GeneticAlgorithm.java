@@ -82,7 +82,7 @@ public class GeneticAlgorithm {
                 chromosome.setFitnessFunctionValue(value);
             }
             for (Chromosome chromosome: chromosomes) {
-                System.out.println(chromosome.getX() + " | " + chromosome.getY() + " | " + chromosome.getFitnessFunctionValue());
+                System.out.println(chromosome.decodeX(xDomainLength, minX) + " | " + chromosome.decodeY(yDomainLength, minY) + " | " + chromosome.getFitnessFunctionValue() + "\n");
             }
             roulette = new Roulette(chromosomes, fitnessFunctionValuesSum);
             chromosomes = getNewGeneration(getParentsPopulation());
