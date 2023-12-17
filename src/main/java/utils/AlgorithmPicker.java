@@ -10,6 +10,10 @@ import java.util.stream.Stream;
 public class AlgorithmPicker {
 
     public static void main(String [] args) {
+        if (args.length < 6) {
+            System.out.println("Not enough parameters provided.\n"
+                    + "Required parameters: Algorithm, xMin, xMax, yMin, yMax, function");
+        }
         String function = String.join(" ", args);
         System.out.println(function);
         Function f = new Function(function);
