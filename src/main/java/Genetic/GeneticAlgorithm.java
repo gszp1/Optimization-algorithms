@@ -2,6 +2,7 @@ package Genetic;
 
 import utils.Function;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -100,10 +101,22 @@ public class GeneticAlgorithm {
     }
 
     private ArrayList<Chromosome> getNewGeneration(ArrayList<Chromosome> parentsPopulation) {
-        ArrayList<Chromosome> childrenPopulation = new ArrayList<>();
-        for (Chromosome chromosome: parentsPopulation) {
-
+        ArrayList<Chromosome> newPopulation = new ArrayList<>();
+        ArrayList<ChromosomePair> parentPairs = new ArrayList<>();
+        while (!parentsPopulation.isEmpty()) {
+            int parentID = ThreadLocalRandom.current().nextInt(0, parentsPopulation.size());
+            if (parentsPopulation.size() == 1) {
+                newPopulation.add(chromosomes.get(parentID));
+                parentsPopulation.remove(parentID);
+                break;
+            }
+            int secondParentID = ThreadLocalRandom.current().nextInt(0, parentsPopulation.size());
+            parentsPopulation.remove(secondParentID);
+            parentPairs.add(new ChromosomePair(chromosomes.get(parentID), chromosomes.get(secondParentID)));
+            parentsPopulation.remove(parentID);
+            parentsPopulation.remove(secondParentID);
         }
+        return newPopulation;
     }
 
 

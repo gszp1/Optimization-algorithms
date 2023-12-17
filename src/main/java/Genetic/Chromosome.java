@@ -24,6 +24,11 @@ public class Chromosome {
         y = generateBinaryVector(yLength);
     }
 
+    public Chromosome(StringBuilder x, StringBuilder y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public StringBuilder getX() {
         return x;
     }
@@ -50,5 +55,4 @@ public class Chromosome {
         fitnessFunctionValue = value;
     }
 
-    public
 }
