@@ -23,7 +23,7 @@ public class ChromosomePair {
 
     public ChromosomePair chromosomeCrossover() {
         StringBuilder part1, part2;
-        int crossing = (int) ThreadLocalRandom.current().nextDouble(0, 1);
+        int crossing = (int) ThreadLocalRandom.current().nextDouble(0, 2);
         if (crossing == 0) {
             int locus = (int) ThreadLocalRandom.current().nextDouble(1,
                     firstChromosome.getX().length() - 1);
@@ -43,5 +43,4 @@ public class ChromosomePair {
         return new ChromosomePair(new Chromosome(firstChromosome.getX(), part1),
                 new Chromosome(secondChromosome.getX(), part2));
     }
-
 }
