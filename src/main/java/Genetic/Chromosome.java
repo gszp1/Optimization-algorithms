@@ -38,12 +38,12 @@ public class Chromosome {
     }
 
     public double decodeX(int domainLength, double minValue) {
-        int binaryValue = Integer.parseInt(String.valueOf(x), 2);
+        long binaryValue = Long.parseLong(String.valueOf(y), 2);
         return minValue + ((domainLength * binaryValue) / (Math.pow(2, x.length()) - 1));
     }
 
     public double decodeY(int domainLength, double minValue) {
-        int binaryValue = Integer.parseInt(String.valueOf(y), 2);
+        long binaryValue = Long.parseLong(String.valueOf(y), 2);
         return minValue + ((domainLength * binaryValue) / (Math.pow(2, y.length()) - 1));
     }
 
