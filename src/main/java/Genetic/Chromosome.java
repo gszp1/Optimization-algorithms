@@ -44,7 +44,7 @@ public class Chromosome {
 
     public double decodeY(int domainLength, double minValue) {
         int binaryValue = Integer.parseInt(String.valueOf(y), 2);
-        return minValue + ((domainLength * binaryValue) / (Math.pow(2, x.length()) - 1));
+        return minValue + ((domainLength * binaryValue) / (Math.pow(2, y.length()) - 1));
     }
 
     public double getFitnessFunctionValue() {
