@@ -3,6 +3,7 @@ package Genetic;
 import utils.Function;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GeneticAlgorithm {
 
@@ -85,6 +86,20 @@ public class GeneticAlgorithm {
             ++generationsCounter;
         }
     }
+
+    private ArrayList<Chromosome> getParentsPopulation() {
+        ArrayList<Chromosome> parentsPopulation = new ArrayList<>();
+        while (parentsPopulation.size() < chromosomes.size()) {
+            double randomValue = ThreadLocalRandom.current().nextDouble(0, roulette.getCurrentUpperBoundary());
+            Chromosome chromosome = roulette.findChromosome(randomValue);
+            if (chromosome != null) {
+                parentsPopulation.add(chromosome);
+            }
+        }
+        return parentsPopulation;
+    }
+
+    
 
 
 

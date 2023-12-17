@@ -30,4 +30,7 @@ public class Roulette {
         currentUpperBoundary += fitnessIndex;
     }
 
+    public double getCurrentUpperBoundary() {
+        return currentUpperBoundary;
+    }
 }
