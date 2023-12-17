@@ -7,7 +7,7 @@ public class Chromosome {
     public static StringBuilder generateBinaryVector(int length) {
         StringBuilder binaryVector = new StringBuilder();
         for(int i = 0; i < length; ++i) {
-            binaryVector.append(Integer.toString(ThreadLocalRandom.current().nextInt(0, 2)));
+            binaryVector.append(ThreadLocalRandom.current().nextInt(0, 2));
         }
         return binaryVector;
     }
@@ -38,7 +38,7 @@ public class Chromosome {
     }
 
     public double decodeX(int domainLength, double minValue) {
-        long binaryValue = Long.parseLong(String.valueOf(y), 2);
+        long binaryValue = Long.parseLong(String.valueOf(x), 2);
         return minValue + ((domainLength * binaryValue) / (Math.pow(2, x.length()) - 1));
     }
 
