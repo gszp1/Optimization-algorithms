@@ -8,10 +8,13 @@ public class Roulette {
 
     private final ArrayList<RouletteField> rouletteFields;
 
-    public Roulette() {
+    public Roulette(ArrayList<Chromosome> chromosomes, double fitnessFunctionSum) {
         rouletteFields = new ArrayList<>();
+        for (Chromosome chromosome: chromosomes) {
+            addRouletteField(chromosome, (chromosome.getFitnessFunctionValue() / fitnessFunctionSum) * 100);
+        }
     }
-    
+
     public Chromosome findChromosome(double fitnessIndex) {
         for (RouletteField field: rouletteFields) {
             if (fitnessIndex >= field.getLowerBoundary() && fitnessIndex < field.getUpperBoundary()) {
@@ -21,8 +24,9 @@ public class Roulette {
         return null;
     }
 
-    public void addRouletteField(Chromosome chromosome, double fitnessIndex) {
-        rouletteFields.add(new RouletteField(currentUpperBoundary, currentUpperBoundary + fitnessIndex, chromosome));
+    private void addRouletteField(Chromosome chromosome, double fitnessIndex) {
+        rouletteFields.add(new RouletteField(currentUpperBoundary,
+                currentUpperBoundary + fitnessIndex, chromosome));
         currentUpperBoundary += fitnessIndex;
     }
 

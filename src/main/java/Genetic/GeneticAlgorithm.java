@@ -24,6 +24,8 @@ public class GeneticAlgorithm {
 
     private ArrayList<Chromosome> chromosomes;
 
+    private Roulette roulette;
+
     private final Function function;
 
     private final int numberOfGenerations;
@@ -77,10 +79,13 @@ public class GeneticAlgorithm {
                 fitnessFunctionValuesSum += value;
                 chromosome.setFitnessFunctionValue(value);
             }
+            roulette = new Roulette(chromosomes, fitnessFunctionValuesSum);
+
 
             ++generationsCounter;
         }
     }
+
 
 
 }
