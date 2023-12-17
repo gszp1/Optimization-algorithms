@@ -16,9 +16,9 @@ public class GeneticAlgorithm {
 
     private final double maxY;
 
-    private final float crossingProbability;
+    private final double crossingProbability;
 
-    private final float mutationProbability;
+    private final double mutationProbability;
 
     private final int populationSize;
 
@@ -34,7 +34,7 @@ public class GeneticAlgorithm {
 
 
 
-    public GeneticAlgorithm(float crossingProbability, float mutationProbability, int populationSize,
+    public GeneticAlgorithm(double crossingProbability, double mutationProbability, int populationSize,
                             double minX, double maxX, double minY, double maxY, int precision, Function function,
                             int numberOfGenerations) {
         this.crossingProbability = crossingProbability;
@@ -104,15 +104,14 @@ public class GeneticAlgorithm {
         ArrayList<ChromosomePair> parentPairs = new ArrayList<>();
         while (!parentsPopulation.isEmpty()) {
             int parentID = ThreadLocalRandom.current().nextInt(0, parentsPopulation.size());
-            if (parentsPopulation.size() == 1) {
-                newPopulation.add(chromosomes.get(parentID));
-                parentsPopulation.remove(parentID);
+            Chromosome firstParent = chromosomes.get(parentID);
+            parentsPopulation.remove(parentID);
+            if (parentsPopulation.isEmpty()) {
+                newPopulation.add(firstParent);
                 break;
             }
             int secondParentID = ThreadLocalRandom.current().nextInt(0, parentsPopulation.size());
-            parentsPopulation.remove(secondParentID);
-            parentPairs.add(new ChromosomePair(chromosomes.get(parentID), chromosomes.get(secondParentID)));
-            parentsPopulation.remove(parentID);
+            parentPairs.add(new ChromosomePair(firstParent, chromosomes.get(secondParentID)));
             parentsPopulation.remove(secondParentID);
         }
         newPopulation.addAll(parentsPairsCrossover(parentPairs));
