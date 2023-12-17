@@ -34,9 +34,9 @@ public class GeneticAlgorithm {
 
 
 
-    public GeneticAlgorithm(double crossingProbability, double mutationProbability, int populationSize,
-                            double minX, double maxX, double minY, double maxY, int precision, Function function,
-                            int numberOfGenerations) {
+    public GeneticAlgorithm(double minX, double maxX, double minY, double maxY,
+                            double crossingProbability, double mutationProbability, int populationSize,
+                            int precision, Function function, int numberOfGenerations) {
         this.crossingProbability = crossingProbability;
         this.mutationProbability = mutationProbability;
         this.populationSize = populationSize;

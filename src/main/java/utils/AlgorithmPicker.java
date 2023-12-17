@@ -1,6 +1,7 @@
 package utils;
 
 import Genetic.GeneticAlgorithm;
+import ParticleSwarm.ParticleSwarmAlgorithm;
 
 import java.util.Arrays;
 
@@ -12,11 +13,12 @@ public class AlgorithmPicker {
                     + "Required parameters: Algorithm, xMin, xMax, yMin, yMax, function");
             return;
         }
+        double xMin, xMax, yMin, yMax;
         try {
-            double xMin = Integer.parseInt(args[1]);
-            double xMax = Integer.parseInt(args[2]);
-            double yMin = Integer.parseInt(args[3]);
-            double yMax = Integer.parseInt(args[4]);
+            xMin = Integer.parseInt(args[1]);
+            xMax = Integer.parseInt(args[2]);
+            yMin = Integer.parseInt(args[3]);
+            yMax = Integer.parseInt(args[4]);
             if (xMin >= xMax || yMin >= yMax) {
                 System.out.println("Provided x or y domains are incorrect.");
                 return;
@@ -27,13 +29,21 @@ public class AlgorithmPicker {
         }
         String [] functionArgs = Arrays.copyOfRange(args, 5, args.length);
         String function = String.join("", functionArgs);
-        System.out.println(function);
         Function f = new Function(function);
-//        ParticleSwarmAlgorithm particleSwarm = new ParticleSwarmAlgorithm(0, 100, 0, 100, 100, f,
-//                1000, 0.5, 0.5, 0.5);
-//        Position pos = particleSwarm.runAlgorithm();
-//        System.out.println(pos.getX() + " | " + pos.getY() + " | " + f.evaluate(pos.getX(), pos.getY()));
-//        GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(0.9, 0.5, 25, 0, 100, 0 , 100, 6, f, 100);
-//        geneticAlgorithm.runAlgorithm();
+        String algorithm = args[0].trim().toLowerCase();
+        switch (algorithm) {
+            case "genetic":
+                GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(xMin, xMax, yMin, yMax,
+                        0.9, 0.5, 25, 6, f, 100);
+                geneticAlgorithm.runAlgorithm();
+                break;
+            case "particleswarm":
+                ParticleSwarmAlgorithm particleSwarm = new ParticleSwarmAlgorithm(xMin, xMax, yMin, yMax,
+                        25, f,100, 0.5, 0.5, 0.5);
+                particleSwarm.runAlgorithm();
+                break;
+            default:
+                System.out.println("Wrong algorithm provided. Enter 'Genetic' or 'ParticleSwarm'.");
+        }
     }
 }
