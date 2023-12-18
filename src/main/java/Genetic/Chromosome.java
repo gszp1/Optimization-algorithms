@@ -4,15 +4,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Chromosome {
 
-    public static StringBuilder generateBinaryVector(int length) {
-        StringBuilder binaryVector = new StringBuilder();
-        for(int i = 0; i < length; ++i) {
-            binaryVector.append(ThreadLocalRandom.current().nextInt(0, 2));
-        }
-        return binaryVector;
-    }
-
-
     private final StringBuilder x;
 
     private final StringBuilder y;
@@ -27,6 +18,14 @@ public class Chromosome {
     public Chromosome(StringBuilder x, StringBuilder y) {
         this.x = x;
         this.y = y;
+    }
+
+    private StringBuilder generateBinaryVector(int length) {
+        StringBuilder binaryVector = new StringBuilder();
+        for(int i = 0; i < length; ++i) {
+            binaryVector.append(ThreadLocalRandom.current().nextInt(0, 2));
+        }
+        return binaryVector;
     }
 
     public StringBuilder getX() {
