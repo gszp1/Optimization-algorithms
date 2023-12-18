@@ -1,4 +1,4 @@
-version: '3.8'  # Use an appropriate version
+version: '3.8'
 
 services:
   optimal_service:
