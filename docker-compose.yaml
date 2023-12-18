@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile 
-    command: particleswarm 0 100 0 100 x^2 + y
+    command: genetic 0 100 0 100 x^2 + y
     volumes:
       - ./results:/project/results
     stdin_open: true

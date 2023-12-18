@@ -120,14 +120,14 @@ public class GeneticAlgorithm {
         ArrayList<ChromosomePair> parentPairs = new ArrayList<>();
         while (!parentsPopulation.isEmpty()) {
             int parentID = ThreadLocalRandom.current().nextInt(0, parentsPopulation.size());
-            Chromosome firstParent = chromosomes.get(parentID);
+            Chromosome firstParent = parentsPopulation.get(parentID);
             parentsPopulation.remove(parentID);
             if (parentsPopulation.isEmpty()) {
                 newPopulation.add(firstParent);
                 break;
             }
             int secondParentID = ThreadLocalRandom.current().nextInt(0, parentsPopulation.size());
-            parentPairs.add(new ChromosomePair(firstParent, chromosomes.get(secondParentID)));
+            parentPairs.add(new ChromosomePair(firstParent, parentsPopulation.get(secondParentID)));
             parentsPopulation.remove(secondParentID);
         }
         newPopulation.addAll(parentsPairsCrossover(parentPairs));
