@@ -70,6 +70,7 @@ public class ParticleSwarmAlgorithm {
             for(Particle particle: particles) {
                 particle.updateVelocity(inertiaCoefficient, socialCoefficient, cognitiveCoefficient);
                 particle.updatePosition();
+                validatePosition(particle);
                 particle.updateValue(function);
                 if (particle.getValue() > function.evaluate(bestGlobalPosition.getX(), bestGlobalPosition.getY())) {
                     bestGlobalPosition = particle.getPosition();
@@ -115,5 +116,18 @@ public class ParticleSwarmAlgorithm {
             }
         }
         return false;
+    }
+
+    private void validatePosition(Particle particle) {
+        if (particle.getPosition().getX() < minX) {
+            particle.getPosition().setX(minX);
+        } else if (particle.getPosition().getX() > maxX) {
+            particle.getPosition().setX(maxX);
+        }
+        if (particle.getPosition().getY() < minY) {
+            particle.getPosition().setY(minY);
+        } else if (particle.getPosition().getY() > maxY) {
+            particle.getPosition().setY(maxY);
+        }
     }
 }
