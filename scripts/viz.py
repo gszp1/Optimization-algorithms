@@ -48,8 +48,8 @@ epochs = [data[start+1: end] for start, end in list(zip(split_idx, split_idx[1:]
 
 def draw_epoch(epoch: list, output_file_name: str):
     points = []
-    for chromosome in epoch:
-        points.append([float(x) for x in chromosome.strip().split("|")])
+    for point_data in epoch:
+        points.append([float(x) for x in point_data.strip().split("|")])
     xs, ys, zs = np.matrix(points).T
     ax = plt.axes(projection='3d')
     ax.scatter3D(xs, ys, zs, cmap='Greens')
