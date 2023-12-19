@@ -2,7 +2,6 @@ package Genetic;
 
 import utils.Function;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
