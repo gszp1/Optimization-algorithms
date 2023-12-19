@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile 
-    command: genetic '-50' '50' '-50' '50' 'sin(x+y)+(x-y)^2-(1.5*x)+(2.5*y)+1'
+    command: particleswarm '-50' '50' '-50' '50' 'sin(x+y)+(x-y)^2-(1.5*x)+(2.5*y)+1'
     volumes:
       - ./results:/project/results
     stdin_open: true
